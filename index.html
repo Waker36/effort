@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <h2>貓魚成就系統</h2>
+    <div>今日学习时长</div><br>
+    <input type="text" name="今日学习时长" value="1" onchange="onChange()"
+        oninput="onInput()"></input>
+    <div>已获得成就</div>
+    <div>锁定成就</div>
+    <script>
+        const onInput = (value) => { console.log('oninput', value) };
+        const onChange = (value) => { console.log('onchange', value)};
+        const lockEfforts = [{
+            key: 'hour_1',
+            value: '学习一小时'
+        }];
+        const timeCount = 0;
+        lockEfforts.forEach((lockEffort) => {
+            const textNode = document.createTextNode(lockEffort.value);
+            const div = document.createElement("div");
+            div.className = "effort"
+            div.appendChild(textNode);
+            document.body.append(div);
+        })
+    </script>
+</body>
+<style>
+    .effort {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px dashed gray;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+</html>

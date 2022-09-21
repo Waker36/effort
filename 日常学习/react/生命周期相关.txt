@@ -1,0 +1,16 @@
+1、目前常用的生命周期流程（react 16之后）https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/ https://www.bilibili.com/read/cv9056194/
+挂载时：constructor => (getDerivedStateFromProps+)render => componentDidMount
+
+更新时：更新分三种情况
+(1)props变化 （2）setState (3)forceUpdate
+ 前两种情况getDerivedStateFromProps=>shouldComponentUpdate=>render=>getSnapshotBeforeUpdate=>componentDidUpdate, forceUpdate的时候不走shouldComponentUpdate其他一致
+
+卸载时：componentWillUnmount
+
+
+2、componentWillMount、componentWillReceiveProps、componentWillUpdate为什么会被移除？
+React16推出了Fiber,如果要开启async rendering， render之前的函数都可能执行多遍，直接禁止比建议不用要好。
+
+3、getSnapshotBeforeUpdate
+getSnapshotBeforeUpdate(prevProps, prevState)
+getSnapshotBeforeUpdate() 在最近一次渲染输出（提交到 DOM 节点）之前调用。它使得组件能在发生更改之前从 DOM 中捕获一些信息（例如，滚动位置）。此生命周期的任何返回值将作为参数传递给 componentDidUpdate(prevProps, prevState, snapshot)。 
